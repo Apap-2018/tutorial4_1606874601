@@ -28,4 +28,13 @@ public class FlightServiceImpl implements FlightService{
 		return flightDb.findByFlightNumber(flightNumber);
 	}
 
+	@Override
+	public void updateFlight(String flightNumber, FlightModel flight) {
+		FlightModel oldFlight = this.getFlightDetailByFlightNumber(flightNumber);
+		oldFlight.setDestination(flight.getDestination());
+		oldFlight.setFlightNumber(flight.getFlightNumber());
+		oldFlight.setOrigin(flight.getOrigin());
+		oldFlight.setTime(flight.getTime());
+	}
+
 }

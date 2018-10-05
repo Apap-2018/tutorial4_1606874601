@@ -43,4 +43,18 @@ public class FlightController {
 		flightService.deleteFlight(flight);
 		return "delete";
 	}
+	
+	
+	@RequestMapping(value = "/flight/update/{flightNumber}", method = RequestMethod.GET)
+    private String updateFlight(@PathVariable(value = "flightNumber") String flightNumber, Model model) {
+        FlightModel flight = flightService.getFlightDetailByFlightNumber(flightNumber);
+        model.addAttribute("flight", flight);
+        return "update-flight";
+    }
+
+    @RequestMapping(value = "/flight/update/{flightNumber}", method = RequestMethod.POST)
+    private String updateFlight(@PathVariable(value = "flightNumber") String flightNumber, @ModelAttribute FlightModel flight) {
+        flightService.updateFlight(flightNumber, flight);
+        return "update";
+    }
 }

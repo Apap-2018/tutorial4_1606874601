@@ -7,5 +7,6 @@ public interface PilotService {
 	
 	void addPilot(PilotModel pilot);
 	void deletePilot(PilotModel pilot);
+	void updatePilot(String licenseNumber, PilotModel pilot);
 
 }
