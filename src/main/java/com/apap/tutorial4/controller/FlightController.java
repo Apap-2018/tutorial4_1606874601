@@ -64,8 +64,11 @@ public class FlightController {
     @RequestMapping(value= "/flight/view", method = RequestMethod.GET)
 	private String viewFlight(@RequestParam("flightNumber") String flightNumber, Model model) {
 		FlightModel flight = flightService.getFlightDetailByFlightNumber(flightNumber);
-		model.addAttribute("flight", flight);
-		model.addAttribute("pilot", flight.getPilot());
-		return "view-flight";
+		if (flight!=null) {
+			model.addAttribute("flight", flight);
+			model.addAttribute("pilot", flight.getPilot());
+			return "view-flight";
+		}
+		return "not-found";
 	}
 }

@@ -21,7 +21,6 @@
 		<td>
 			<a th:href="@{'/flight/delete/' + ${flight.flightNumber}}">delete</a>
 		</td>
-		
 		<br>
 	</tr>
 	
@@ -35,6 +34,8 @@
 	
 	<br><br>
 	<a th:href="@{'/flight/add/' + ${pilot.licenseNumber}}">Add Flight</a>
+	<br><br>
+	<a th:href="@{/}">Kembali</a>
 </body>
 
 </html>
