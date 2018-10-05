@@ -1,5 +1,7 @@
 package com.apap.tutorial4.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tutorial4.model.FlightModel;
 import com.apap.tutorial4.model.PilotModel;
@@ -57,4 +60,12 @@ public class FlightController {
         flightService.updateFlight(flightNumber, flight);
         return "update";
     }
+    
+    @RequestMapping(value= "/flight/view", method = RequestMethod.GET)
+	private String viewFlight(@RequestParam("flightNumber") String flightNumber, Model model) {
+		FlightModel flight = flightService.getFlightDetailByFlightNumber(flightNumber);
+		model.addAttribute("flight", flight);
+		model.addAttribute("pilot", flight.getPilot());
+		return "view-flight";
+	}
 }
