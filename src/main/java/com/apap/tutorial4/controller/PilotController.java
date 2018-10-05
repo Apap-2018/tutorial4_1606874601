@@ -47,6 +47,13 @@ public class PilotController {
 		
 		return "view-pilot";
 	}
+	
+	@RequestMapping(value = "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
+	private String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		pilotService.deletePilot(pilot);
+		return "delete";
+	}
 
 
 }
